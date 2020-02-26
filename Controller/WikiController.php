@@ -20,7 +20,7 @@ class WikiController extends AbstractController
 {
     /**
      * @Route("/", name="wiki_index", methods="GET")
-     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function indexAction(): Response
     {

@@ -4,7 +4,7 @@ namespace IndyDevGuy\Bundle\WikiBundle\Repository;
 
 use IndyDevGuy\Bundle\WikiBundle\Entity\WikiEvent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 /**
  * @method WikiEvent|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class WikiEventRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, WikiEvent::class);
     }

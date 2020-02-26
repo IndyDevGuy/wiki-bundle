@@ -4,7 +4,7 @@ namespace IndyDevGuy\Bundle\WikiBundle\Repository;
 
 use IndyDevGuy\Bundle\WikiBundle\Entity\WikiPage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 /**
  * @method WikiPage|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class WikiPageRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, WikiPage::class);
     }
