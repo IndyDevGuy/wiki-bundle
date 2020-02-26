@@ -19,7 +19,7 @@ of the Composer documentation.
 ### Step 2: Enable the Bundle
 
 Then, enable the bundle by adding it to the list of registered bundles
-in the `config/bundles.php` file of your project (if it isn't exists yet):
+in the `config/bundles.php` file of your project (if it doesn't exists yet):
 
 ```php
 <?php
@@ -33,7 +33,7 @@ return [
 ```
 
 Create routing file to enable routes from wiki bundle like this:
-`config/routes/linkorb-wiki-bundle.yaml`
+`config/routes/indydevguy-wiki-bundle.yaml`
 And add loading of routes at next way:
 ```yaml
 wiki:
