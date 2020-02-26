@@ -36,7 +36,7 @@ class WikiPageType extends AbstractType
                     // TODO: Resolve this
                     // new CodeConstraint(),
                     new Assert\Callback(
-                        function ($name, ExecutionContext $context) use ($wikiPageRepository, $entity) {
+                        static function ($name, ExecutionContext $context) use ($wikiPageRepository, $entity) {
                             if ($findEntity = $wikiPageRepository->findOneByWikiIdAndName($entity->getWiki()->getId(), $name)) {
                                 if ($findEntity->getId() != $entity->getId()) {
                                     $context->addViolation('Name already exist');

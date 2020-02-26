@@ -3,14 +3,15 @@
   "description": "Symfony 4 project Wiki Bundle Forked from LinkOrb wiki bundle",
   "homepage": "https://github.com/MaSt3r-iLLuSioN/wiki-bundle",
   "keywords": [
-    "form",
-    "mast3r-illusion"
+    "mast3r-illusion",
+    "IndyDevGuy",
+    "Symfony Wiki Bundle"
   ],
   "type": "symfony-bundle",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
-      "name": "LinkORB Engineering, IndyDevGuy",
+      "name": "IndyDevGuy",
       "email": "contact@indydevguy.com",
       "role": "Development"
     }
@@ -24,6 +25,7 @@
     "doctrine/doctrine-bundle":  "^2.0",
     "symfony/framework-bundle": "^4.0",
     "sensio/framework-extra-bundle": "^5.1",
-    "symfony/security-bundle": "^4.0"
+    "symfony/security-bundle": "^4.0",
+    "ext-json": "*"
   }
 }

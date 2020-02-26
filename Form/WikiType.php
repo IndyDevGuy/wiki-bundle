@@ -35,7 +35,7 @@ class WikiType extends AbstractType
                     // TODO: resolve this
                     // new CodeConstraint(),
                     new Assert\Callback(
-                        function ($name, ExecutionContext $context) use ($wikiRepository, $entity) {
+                        static function ($name, ExecutionContext $context) use ($wikiRepository, $entity) {
                             if ($findEntity = $wikiRepository->findOneByName($name)) {
                                 if ($findEntity->getId() != $entity->getId()) {
                                     $context->addViolation('Name already exist');

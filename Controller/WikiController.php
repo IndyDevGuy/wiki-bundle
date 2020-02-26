@@ -7,20 +7,19 @@ use IndyDevGuy\Bundle\WikiBundle\Form\WikiType;
 use IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Security("has_role('ROLE_ADMIN')")
+ * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
  * @Route("/wiki")
  */
-class WikiController extends AbstractController
+class WikiController extends WikiBaseController
 {
     /**
      * @Route("/", name="wiki_index", methods="GET")
-     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function indexAction(): Response
     {
@@ -42,7 +41,7 @@ class WikiController extends AbstractController
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      * @Route("/add", name="wiki_add", methods="GET|POST")
      */
     public function AddAction(Request $request): Response
@@ -53,7 +52,7 @@ class WikiController extends AbstractController
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      * @Route("/{wikiName}/edit", name="wiki_edit", methods="GET|POST")
      * @ParamConverter("wiki", options={"mapping"={"wikiName"="name"}})
      */
@@ -63,7 +62,7 @@ class WikiController extends AbstractController
     }
 
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      * @Route("/{wikiName}/delete", name="wiki_delete", methods="GET")
      * @ParamConverter("wiki", options={"mapping"={"wikiName"="name"}})
      */
@@ -135,41 +134,4 @@ class WikiController extends AbstractController
         ]);
     }
 
-    protected function getWikiPermission(Wiki $wiki)
-    {
-        $wikiRoles = ['readRole' => false, 'writeRole' => false];
-        $flag = false;
-
-        if ($this->isGranted('ROLE_SUPERUSER')) {
-            $wikiRoles['readRole'] = true;
-            $wikiRoles['writeRole'] = true;
-            $flag = true;
-        } else {
-            if (!empty($wiki->getReadRole())) {
-                $readArray = explode(',', $wiki->getReadRole());
-                array_walk($readArray, 'trim');
-
-                foreach ($readArray as $read) {
-                    if ($this->isGranted($read)) {
-                        $wikiRoles['readRole'] = true;
-                        $flag = true;
-                    }
-                }
-            }
-
-            if (!empty($wiki->getWriteRole())) {
-                $writeArray = explode(',', $wiki->getWriteRole());
-                array_walk($writeArray, 'trim');
-
-                foreach ($writeArray as $write) {
-                    if ($this->isGranted($write)) {
-                        $flag = true;
-                        $wikiRoles['writeRole'] = true;
-                    }
-                }
-            }
-        }
-
-        return  $flag ? $wikiRoles : false;
-    }
 }

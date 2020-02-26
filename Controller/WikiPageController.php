@@ -8,22 +8,21 @@ use IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType;
 use IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Security("is_granted('IS_AUTHENTICATED_FULLY')") *
+ * @Security("has_role('ROLE_ADMIN')") *
  * @Route("/wiki/{wikiName}")
  * @ParamConverter("wiki", options={"mapping"={"wikiName"="name"}})
  */
-class WikiPageController extends Controller
+class WikiPageController extends WikiBaseController
 {
     /**
      * @Route("/pages", name="wiki_page_index", methods="GET")
-     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function index(Wiki $wiki): Response
     {
@@ -41,7 +40,7 @@ class WikiPageController extends Controller
 
     /**
      * @Route("/pages/add", name="wiki_page_add", methods="GET|POST")
-     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function addAction(Request $request, Wiki $wiki): Response
     {
@@ -54,7 +53,7 @@ class WikiPageController extends Controller
     /**
      * @Route("/{pageName}", name="wiki_page_view", methods="GET")
      * @ParamConverter("wikiPage", options={"mapping"={"pageName"="name"}})
-     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function viewAction(Wiki $wiki, WikiPage $wikiPage): Response
     {
@@ -74,7 +73,7 @@ class WikiPageController extends Controller
 
     /**
      * @Route("/pages/{id}/edit", name="wiki_page_edit", methods="GET|POST")
-     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function editAction(Request $request, Wiki $wiki, WikiPage $wikiPage): Response
     {
@@ -83,7 +82,7 @@ class WikiPageController extends Controller
 
     /**
      * @Route("/pages/{id}/delete", name="wiki_page_delete", methods="GET")
-     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function deleteAction(Request $request, Wiki $wiki, WikiPage $wikiPage): Response
     {
