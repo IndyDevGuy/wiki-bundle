@@ -1,0 +1,29 @@
+{
+  "name": "indydevguy/wiki-bundle",
+  "description": "Symfony 4 project Wiki Bundle Forked from LinkOrb wiki bundle",
+  "homepage": "https://github.com/MaSt3r-iLLuSioN/wiki-bundle",
+  "keywords": [
+    "form",
+    "mast3r-illusion"
+  ],
+  "type": "symfony-bundle",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "LinkORB Engineering, IndyDevGuy",
+      "email": "contact@indydevguy.com",
+      "role": "Development"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "IndyDevGuy\\Bundle\\WikiBundle\\": ""
+    }
+  },
+  "require": {
+    "doctrine/doctrine-bundle":  "^2.0",
+    "symfony/framework-bundle": "^4.0",
+    "sensio/framework-extra-bundle": "^5.1",
+    "symfony/security-bundle": "^4.0"
+  }
+}
