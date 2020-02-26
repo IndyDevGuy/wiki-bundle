@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+ * @Security("has_role('ROLE_ADMIN')")
  * @Route("/wiki")
  */
 class WikiController extends AbstractController
@@ -42,7 +42,7 @@ class WikiController extends AbstractController
     }
 
     /**
-     * @Security("has_role('ROLE_SUPERUSER')")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/add", name="wiki_add", methods="GET|POST")
      */
     public function AddAction(Request $request): Response
@@ -53,7 +53,7 @@ class WikiController extends AbstractController
     }
 
     /**
-     * @Security("has_role('ROLE_SUPERUSER')")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{wikiName}/edit", name="wiki_edit", methods="GET|POST")
      * @ParamConverter("wiki", options={"mapping"={"wikiName"="name"}})
      */
@@ -63,7 +63,7 @@ class WikiController extends AbstractController
     }
 
     /**
-     * @Security("has_role('ROLE_SUPERUSER')")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{wikiName}/delete", name="wiki_delete", methods="GET")
      * @ParamConverter("wiki", options={"mapping"={"wikiName"="name"}})
      */

@@ -41,7 +41,7 @@ class WikiPageController extends Controller
 
     /**
      * @Route("/pages/add", name="wiki_page_add", methods="GET|POST")
-     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function addAction(Request $request, Wiki $wiki): Response
     {
@@ -54,7 +54,7 @@ class WikiPageController extends Controller
     /**
      * @Route("/{pageName}", name="wiki_page_view", methods="GET")
      * @ParamConverter("wikiPage", options={"mapping"={"pageName"="name"}})
-     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function viewAction(Wiki $wiki, WikiPage $wikiPage): Response
     {
@@ -74,7 +74,7 @@ class WikiPageController extends Controller
 
     /**
      * @Route("/pages/{id}/edit", name="wiki_page_edit", methods="GET|POST")
-     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function editAction(Request $request, Wiki $wiki, WikiPage $wikiPage): Response
     {
@@ -83,7 +83,7 @@ class WikiPageController extends Controller
 
     /**
      * @Route("/pages/{id}/delete", name="wiki_page_delete", methods="GET")
-     * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_WIKI') ")
+     * @Security("has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function deleteAction(Request $request, Wiki $wiki, WikiPage $wikiPage): Response
     {

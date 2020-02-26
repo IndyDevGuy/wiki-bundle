@@ -9,7 +9,7 @@ use IndyDevGuy\Bundle\WikiBundle\Entity\Wiki;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+ * @Security("has_role('ROLE_ADMIN')")
  * @Route("/wiki/{wikiName}/events")
  */
 class WikiEventController extends AbstractController
