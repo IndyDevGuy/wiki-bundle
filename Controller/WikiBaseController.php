@@ -11,7 +11,7 @@ class WikiBaseController extends AbstractController
         $wikiRoles = ['readRole' => false, 'writeRole' => false];
         $flag = false;
 
-        if ($this->isGranted('ROLE_SUPERUSER')) {
+        if ($this->isGranted('ROLE_SUPERUSER') || $this->isGranted('ROLE_ADMIN')) {
             $wikiRoles['readRole'] = true;
             $wikiRoles['writeRole'] = true;
             $flag = true;
