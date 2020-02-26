@@ -37,8 +37,22 @@ Create routing file to enable routes from wiki bundle like this:
 And add loading of routes at next way:
 ```yaml
 wiki:
-  resource: '@WikiBundle/Resources/config/routing.yaml'
-  type: yaml
+    resource: '@WikiBundle/Resources/config/routing.yaml'
+    type: yaml
+```
+### Step 3: Enable Twig Extensions
+Add the following snippet to your 'app/config/services.yml' file:
+```yaml
+services:
+    # ...
+    
+    markdown.engine:
+        class: Aptoma\Twig\Extension\MarkdownEngine\MichelfMarkdownEngine
+    twig.markdown:
+        class: Aptoma\Twig\Extension\MarkdownExtension
+        arguments: ['@markdown.engine']
+        tags:
+            - { name: twig.extension }
 ```
 
-### Step 3: Enjoy
+### Step 4: TBC
