@@ -1,6 +1,6 @@
 {
   "name": "indydevguy/wiki-bundle",
-  "description": "Symfony 4 project Wiki Bundle Forked from LinkOrb wiki bundle",
+  "description": "Adds a wiki system to your Symfony 4 application.",
   "homepage": "https://github.com/MaSt3r-iLLuSioN/wiki-bundle",
   "keywords": [
     "mast3r-illusion",
