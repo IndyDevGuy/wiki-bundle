@@ -3,7 +3,7 @@
 {# TODO: Add proper `base.html.twig` #}
   {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/darkula.css">
+    <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/{{ highlightJsTheme }}.css">
   {% endblock %}
 
   {% block title %}{{ pageTitle }}{% endblock %}

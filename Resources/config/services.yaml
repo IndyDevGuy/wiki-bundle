@@ -34,6 +34,11 @@ services:
             - '@doctrine.orm.default_entity_manager'
             - '@IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository'
 
+    IndyDevGuy\Bundle\WikiBundle\EventListener\ControllerListener:
+        arguments: [ '@twig', '@service_container' ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller }
+
     markdown.engine:
         class: IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine
     twig.markdown:

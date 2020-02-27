@@ -139,7 +139,8 @@ class WikiController extends WikiBaseController
 
             return $this->redirectToRoute('wiki_index');
         }
-        $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
+        $twig = $this->get('twig');
+        $twig->addGlobal('pageTitle', $this->pageTitle);
         return $this->render('@Wiki/wiki/edit.html.twig', [
             'wiki' => $wiki,
             'form' => $form->createView(),
