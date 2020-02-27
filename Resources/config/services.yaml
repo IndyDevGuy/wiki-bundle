@@ -35,7 +35,7 @@ services:
             - '@IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository'
 
     markdown.engine:
-        class: IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine\MichelfMarkdownEngine
+        class: IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine
     twig.markdown:
         class: Aptoma\Twig\Extension\MarkdownExtension
         arguments: ['@markdown.engine']
