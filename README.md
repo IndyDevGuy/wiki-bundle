@@ -19,7 +19,7 @@ of the Composer documentation.
 ### Step 2: Enable the Bundle
 
 Then, enable the bundle by adding it to the list of registered bundles
-in the `config/bundles.php` file of your project (if it isn't exists yet):
+in the `config/bundles.php` file of your project (if it doesn't exists yet):
 
 ```php
 <?php
@@ -33,12 +33,26 @@ return [
 ```
 
 Create routing file to enable routes from wiki bundle like this:
-`config/routes/linkorb-wiki-bundle.yaml`
+`config/routes/indydevguy-wiki-bundle.yaml`
 And add loading of routes at next way:
 ```yaml
 wiki:
-  resource: '@WikiBundle/Resources/config/routing.yaml'
-  type: yaml
+    resource: '@WikiBundle/Resources/config/routing.yaml'
+    type: yaml
+```
+### Step 3: Enable Twig Extensions
+Add the following snippet to your 'app/config/services.yml' file:
+```yaml
+services:
+    # ...
+    
+    markdown.engine:
+        class: Aptoma\Twig\Extension\MarkdownEngine\MichelfMarkdownEngine
+    twig.markdown:
+        class: Aptoma\Twig\Extension\MarkdownExtension
+        arguments: ['@markdown.engine']
+        tags:
+            - { name: twig.extension }
 ```
 
-### Step 3: Enjoy
+### Step 4: TBC
