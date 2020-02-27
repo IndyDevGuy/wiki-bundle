@@ -1,35 +1,44 @@
 services:
-  _defaults:
-    autowire: false
-    autoconfigure: false
-    public: true
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: true
 
-  IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository:
-    arguments: ['@doctrine']
-    tags: ['doctrine.repository_service']
+    IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository:
+        arguments: ['@doctrine']
+        tags: ['doctrine.repository_service']
 
-  IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository:
-    arguments: ['@doctrine']
-    tags: ['doctrine.repository_service']
+    IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository:
+        arguments: ['@doctrine']
+        tags: ['doctrine.repository_service']
 
-  IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository:
-    arguments: ['@doctrine']
-    tags: ['doctrine.repository_service']
+    IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository:
+        arguments: ['@doctrine']
+        tags: ['doctrine.repository_service']
 
-  IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType:
-    arguments: ['@IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository']
-    public: false
-    tags:
-      - { name: form.type, alias: IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType }
+    IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType:
+        arguments: ['@IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository']
+        public: false
+        tags:
+            - { name: form.type, alias: IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType }
 
-  IndyDevGuy\Bundle\WikiBundle\Form\WikiType:
-    arguments: ['@IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository']
-    public: false
-    tags:
-      - { name: form.type, alias: IndyDevGuy\Bundle\WikiBundle\Form\WikiType }
+    IndyDevGuy\Bundle\WikiBundle\Form\WikiType:
+        arguments: ['@IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository']
+        public: false
+        tags:
+            - { name: form.type, alias: IndyDevGuy\Bundle\WikiBundle\Form\WikiType }
 
-  IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService:
-    arguments:
-      - '@security.token_storage'
-      - '@doctrine.orm.default_entity_manager'
-      - '@IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository'
+    IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService:
+        arguments:
+            - '@security.token_storage'
+            - '@doctrine.orm.default_entity_manager'
+            - '@IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository'
+
+    markdown.engine:
+        class: IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine
+
+    twig.markdown:
+        class: IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownExtension
+        arguments: ['@markdown.engine']
+        tags:
+            - { name: twig.extension }

@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {# TODO: Add proper `base.html.twig` #}
+  {% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/darkula.css">
+  {% endblock %}
 
-  {% block title %}{% endblock %}
+  {% block title %}{{ pageTitle }}{% endblock %}
+  {% block pageTitle %}{{ pageTitle }}{% endblock %}
 
   {% block body %}{% endblock %}
 
-  {% block scripts_custom %} {% endblock %}
+  {% block javascripts %}
+    {{ parent() }}
+  {% endblock %}

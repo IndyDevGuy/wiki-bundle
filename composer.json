@@ -3,7 +3,6 @@
   "description": "Adds a wiki system to your Symfony 4 application.",
   "homepage": "https://github.com/MaSt3r-iLLuSioN/wiki-bundle",
   "keywords": [
-    "mast3r-illusion",
     "IndyDevGuy",
     "Symfony Wiki Bundle"
   ],
@@ -26,6 +25,8 @@
     "symfony/framework-bundle": "^4.0",
     "sensio/framework-extra-bundle": "^5.1",
     "symfony/security-bundle": "^4.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "league/commonmark": "^1.3",
+    "spatie/commonmark-highlighter": "^2.1"
   }
 }

@@ -6,6 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class WikiBaseController extends AbstractController
 {
+    public $pageTitle;
+
+    public function __construct()
+    {
+        $this->pageTitle = 'Wiki';
+    }
+
     protected function getWikiPermission(Wiki $wiki)
     {
         $wikiRoles = ['readRole' => false, 'writeRole' => false];

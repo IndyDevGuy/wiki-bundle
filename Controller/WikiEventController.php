@@ -18,6 +18,7 @@ class WikiEventController extends WikiBaseController
      */
     public function indexAction($wikiName)
     {
+        $this->pageTitle = $wikiName . ' Events';
         if (!$wiki = $this->get('IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository')->findOneByName($wikiName)) {
             return $this->redirectToRoute('wiki_index');
         }
@@ -33,6 +34,7 @@ class WikiEventController extends WikiBaseController
         return $this->render('@Wiki/wiki_event/index.html.twig', [
             'wikiEvents' => $wikiEvents,
             'wiki' => $wiki,
+            'pageTitle' => $this->pageTitle
         ]);
     }
 

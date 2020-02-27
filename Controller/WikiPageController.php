@@ -29,11 +29,13 @@ class WikiPageController extends WikiBaseController
         if (!$wikiRoles = $this->getWikiPermission($wiki)) {
             throw new AccessDeniedException('Access denied!');
         }
+        $this->pageTitle = $wiki->getName() . ' Page List';
         $wikiPageRepository = $this->get('IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository');
 
         $data = $wikiRoles;
         $data['wikiPages'] = $wikiPageRepository->findByWikiId($wiki->getId());
         $data['wiki'] = $wiki;
+        $data['pageTitle'] = $this->pageTitle;
 
         return $this->render('@Wiki/wiki_page/index.html.twig', $data);
     }
@@ -46,7 +48,7 @@ class WikiPageController extends WikiBaseController
     {
         $wikiPage = new WikiPage();
         $wikiPage->setWiki($wiki);
-
+        $this->pageTitle = 'Add Wiki Page to ' . $wiki->getName();
         return $this->getEditForm($request, $wikiPage, $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService'));
     }
 
@@ -64,6 +66,8 @@ class WikiPageController extends WikiBaseController
             throw new AccessDeniedException('Access denied!');
         }
 
+        $this->pageTitle = $wikiPage->getName();
+
         $data = $wikiRoles;
         $data['wikiPage'] = $wikiPage;
         $data['wiki'] = $wiki;
@@ -77,6 +81,7 @@ class WikiPageController extends WikiBaseController
      */
     public function editAction(Request $request, Wiki $wiki, WikiPage $wikiPage): Response
     {
+        $this->pageTitle = 'Edit Page ' . $wikiPage->getName();
         return $this->getEditForm($request, $wikiPage, $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService'));
     }
 
@@ -164,6 +169,7 @@ class WikiPageController extends WikiBaseController
         return $this->render('@Wiki/wiki_page/edit.html.twig', [
             'wikiPage' => $wikiPage,
             'form' => $form->createView(),
+            'pageTitle' => $this->pageTitle
         ]);
     }
 }

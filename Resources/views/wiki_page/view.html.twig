@@ -29,14 +29,10 @@
         {% endif %}
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <fieldset>
-                <div>
-                    {{ wikiPage.content|raw }}
-                </div>
-            </fieldset>
-        </div>
+    <div class="col-md-12">
+        {% markdown %}
+            {{ wikiPage.content|raw }}
+        {% endmarkdown %}
     </div>
 
 {% endblock %}

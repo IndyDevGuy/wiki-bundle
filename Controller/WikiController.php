@@ -24,7 +24,7 @@ class WikiController extends WikiBaseController
     public function indexAction(): Response
     {
         $wikis = $this->get('IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository')->findAll();
-
+        $this->pageTitle = 'Wiki List';
         $wikiArray = [];
         foreach ($wikis as $wiki) {
             if ($wikiRoles = $this->getWikiPermission($wiki)) {
@@ -36,7 +36,10 @@ class WikiController extends WikiBaseController
 
         return $this->render(
             '@Wiki/wiki/index.html.twig',
-            ['wikis' => $wikiArray]
+            [
+                'wikis' => $wikiArray,
+                'pageTitle' => $this->pageTitle
+                ]
         );
     }
 
@@ -96,6 +99,14 @@ class WikiController extends WikiBaseController
 
         $add = !$wiki->getid();
 
+        if($add)
+        {
+            $this->pageTitle = 'Add New Wiki';
+        }
+        else
+        {
+            $this->pageTitle = 'Edit Wiki '.$wiki->getName();
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($wiki);
@@ -131,6 +142,7 @@ class WikiController extends WikiBaseController
         return $this->render('@Wiki/wiki/edit.html.twig', [
             'wiki' => $wiki,
             'form' => $form->createView(),
+            'pageTitle' => $this->pageTitle
         ]);
     }
 
