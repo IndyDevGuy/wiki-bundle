@@ -1,8 +1,7 @@
 <?php
-
 namespace IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine;
 
-use IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngineInterface;
+use Aptoma\Twig\Extension\MarkdownEngineInterface;
 use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
@@ -21,7 +20,7 @@ use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 class PHPLeagueCommonMarkEngine implements MarkdownEngineInterface
 {
     /**
-     * @var \League\CommonMark\CommonMarkConverter
+     * @var CommonMarkConverter
      */
     private $converter;
 
@@ -32,7 +31,7 @@ class PHPLeagueCommonMarkEngine implements MarkdownEngineInterface
      *
      * Accepts CommonMarkConverter or creates one automatically
      *
-     * @param \League\CommonMark\CommonMarkConverter $converter
+     * @param CommonMarkConverter $converter
      */
     public function __construct(CommonMarkConverter $converter = null)
     {

@@ -33,13 +33,14 @@ class WikiController extends WikiBaseController
                 }
             }
         }
+        $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
 
         return $this->render(
             '@Wiki/wiki/index.html.twig',
             [
                 'wikis' => $wikiArray,
                 'pageTitle' => $this->pageTitle
-                ]
+            ]
         );
     }
 
@@ -138,7 +139,7 @@ class WikiController extends WikiBaseController
 
             return $this->redirectToRoute('wiki_index');
         }
-
+        $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
         return $this->render('@Wiki/wiki/edit.html.twig', [
             'wiki' => $wiki,
             'form' => $form->createView(),

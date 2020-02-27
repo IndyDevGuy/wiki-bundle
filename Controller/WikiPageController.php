@@ -36,7 +36,7 @@ class WikiPageController extends WikiBaseController
         $data['wikiPages'] = $wikiPageRepository->findByWikiId($wiki->getId());
         $data['wiki'] = $wiki;
         $data['pageTitle'] = $this->pageTitle;
-
+        $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
         return $this->render('@Wiki/wiki_page/index.html.twig', $data);
     }
 
@@ -49,6 +49,7 @@ class WikiPageController extends WikiBaseController
         $wikiPage = new WikiPage();
         $wikiPage->setWiki($wiki);
         $this->pageTitle = 'Add Wiki Page to ' . $wiki->getName();
+        $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
         return $this->getEditForm($request, $wikiPage, $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService'));
     }
 
@@ -71,7 +72,8 @@ class WikiPageController extends WikiBaseController
         $data = $wikiRoles;
         $data['wikiPage'] = $wikiPage;
         $data['wiki'] = $wiki;
-
+        $data['pageTitle'] = $this->pageTitle;
+        $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
         return $this->render('@Wiki/wiki_page/view.html.twig', $data);
     }
 
@@ -165,7 +167,7 @@ class WikiPageController extends WikiBaseController
                 'wikiName' => $wikiPage->getWiki()->getName(),
             ]);
         }
-
+        $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
         return $this->render('@Wiki/wiki_page/edit.html.twig', [
             'wikiPage' => $wikiPage,
             'form' => $form->createView(),
