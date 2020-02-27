@@ -2,7 +2,6 @@
 
 namespace IndyDevGuy\Bundle\WikiBundle\Form;
 
-use IndyDevGuy\Bundle\WikiBundleForm\EasyMDEType;
 use IndyDevGuy\Bundle\WikiBundle\Entity\WikiPage;
 use IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository;
 use App\Validator\Constraint\CodeConstraint;

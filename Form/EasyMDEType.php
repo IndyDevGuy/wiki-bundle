@@ -1,5 +1,6 @@
 <?php
-namespace IndyDevGuy\Bundle\WikiBundleForm;
+namespace IndyDevGuy\Bundle\WikiBundle\Form;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormInterface;

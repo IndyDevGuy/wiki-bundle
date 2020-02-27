@@ -29,7 +29,7 @@ class WikiExtension extends Extension implements PrependExtensionInterface
                 case 'twig':
                     $container->prependExtensionConfig(
                         $name,
-                        array('form' => array('resources' => array('@Wiki/form/form.fields.twig')))
+                        array('form_themes' => array('@Wiki/form/form.fields.twig'))
                     );
                     break;
             }
