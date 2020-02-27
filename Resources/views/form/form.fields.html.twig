@@ -1,0 +1,6 @@
+{% block easy_mde_type_widget %}
+    <textarea {% if elementid is not null %}id="{{ elementid }}"{% endif %}">{% if value is not empty %}{{ value }}{% endif %}</textarea>
+    {% if elementid is  null %}
+        <p>You did not set the "elementid" to instantiate a EasyMDE editor! Please correct this in your form config array! Make sure you name elementid something unique.</p>
+    {% endif %}
+{% endblock %}

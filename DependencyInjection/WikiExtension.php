@@ -24,6 +24,16 @@ class WikiExtension extends Extension implements PrependExtensionInterface
 
     public function prepend(ContainerBuilder $container)
     {
+        foreach (array_keys($container->getExtensions()) as $name) {
+            switch ($name) {
+                case 'twig':
+                    $container->prependExtensionConfig(
+                        $name,
+                        array('form' => array('resources' => array('@Wiki/form/form.fields.twig')))
+                    );
+                    break;
+            }
+        }
         $container->loadFromExtension(
             'doctrine',
             [

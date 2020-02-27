@@ -2,6 +2,7 @@
 
 namespace IndyDevGuy\Bundle\WikiBundle\Form;
 
+use IndyDevGuy\Bundle\WikiBundleForm\EasyMDEType;
 use IndyDevGuy\Bundle\WikiBundle\Entity\WikiPage;
 use IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository;
 use App\Validator\Constraint\CodeConstraint;
@@ -46,15 +47,15 @@ class WikiPageType extends AbstractType
                     ),
                 ],
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', EasyMDEType::class, [
                 'required' => false,
                 'trim' => true,
+                'elementid' => 'EasyMDE'
             ])
             ->add('data', TextareaType::class, [
                 'required' => false,
                 'trim' => true,
                 'attr' => [
-                    'class' => 'ace-editor',
                      'data-mode' => 'yaml',
                      'data-lines' => '10',
                 ],
