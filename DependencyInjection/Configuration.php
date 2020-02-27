@@ -16,10 +16,10 @@ class Configuration implements ConfigurationInterface
         $treeBuilder->getRootNode()
             ->children()
                 ->scalarNode('highlight_js_theme')
-                    ->defaultValue('default')
+                    ->defaultValue('github')
                 ->end()
                 ->scalarNode('php_parser')
-                    ->defaultValue('default')
+                    ->defaultValue('IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine')
                 ->end()
             ->end();
 
