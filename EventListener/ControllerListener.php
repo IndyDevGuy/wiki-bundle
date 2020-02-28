@@ -1,8 +1,8 @@
 <?php
 namespace IndyDevGuy\WikiBundle\EventListener;
 
+use IndyDevGuy\WikiBundle\Controller\WikiBaseController;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Twig\Environment;
 
@@ -20,6 +20,9 @@ class ControllerListener
      */
     public function onKernelController(ControllerEvent $event)
     {
-        $this->twig->addGlobal('highlightJsTheme',$this->container->getParameter('wiki_bundle.highlight_js_theme'));
+        $controller = $event->getController();
+        if ($controller instanceof WikiBaseController) {
+            $this->twig->addGlobal('highlightJsTheme', $this->container->getParameter('wiki_bundle.highlight_js_theme'));
+        }
     }
 }

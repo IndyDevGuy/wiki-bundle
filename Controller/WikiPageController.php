@@ -67,6 +67,8 @@ class WikiPageController extends WikiBaseController
             throw new AccessDeniedException('Access denied!');
         }
 
+        $this->container->setParameter('wiki_bundle.highlight_js_theme', $wikiPage->getHighlighttheme());
+
         $this->pageTitle = $wikiPage->getName();
 
         $data = $wikiRoles;
