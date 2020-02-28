@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('github')
                 ->end()
                 ->scalarNode('php_parser')
-                    ->defaultValue('IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine')
+                    ->defaultValue('IndyDevGuy\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine')
                 ->end()
             ->end();
 
