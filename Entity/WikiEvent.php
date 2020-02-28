@@ -1,11 +1,11 @@
 <?php
 
-namespace IndyDevGuy\Bundle\WikiBundle\Entity;
+namespace IndyDevGuy\WikiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository")
+ * @ORM\Entity(repositoryClass="IndyDevGuy\WikiBundle\Repository\WikiEventRepository")
  */
 class WikiEvent
 {

@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" packagePrefix="IndyDevGuy\Bundle\WikiBundle\" />
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" packagePrefix="IndyDevGuy\WikiBundle\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />

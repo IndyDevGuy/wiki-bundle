@@ -1,5 +1,5 @@
 <?php
-namespace IndyDevGuy\Bundle\WikiBundle\DependencyInjection;
+namespace IndyDevGuy\WikiBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

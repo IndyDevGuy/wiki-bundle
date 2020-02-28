@@ -1,4 +1,4 @@
-{% extends '@Wiki/base.html.twig' %}
+{% extends '@wiki_bundle/base.html.twig' %}
 
 {% block body %}
     <h3>
@@ -35,4 +35,9 @@
         {% endmarkdown %}
     </div>
 
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/{{ highlightJsTheme }}.css">
 {% endblock %}

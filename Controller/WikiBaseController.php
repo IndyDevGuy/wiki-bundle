@@ -1,8 +1,8 @@
 <?php
-namespace IndyDevGuy\Bundle\WikiBundle\Controller;
+namespace IndyDevGuy\WikiBundle\Controller;
 
-use IndyDevGuy\Bundle\WikiBundle\Entity\Wiki;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use IndyDevGuy\WikiBundle\Entity\Wiki;
+use Symfony\FrameworkBundle\Controller\AbstractController;
 
 class WikiBaseController extends AbstractController
 {

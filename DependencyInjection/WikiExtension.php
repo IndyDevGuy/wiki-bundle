@@ -1,6 +1,6 @@
 <?php
 
-namespace IndyDevGuy\Bundle\WikiBundle\DependencyInjection;
+namespace IndyDevGuy\WikiBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,16 +18,16 @@ class WikiExtension extends Extension implements PrependExtensionInterface
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        $container->setParameter('wiki.php_parser',$config['php_parser']);
+        $container->setParameter('wiki_bundle.php_parser',$config['php_parser']);
         $this->themeLocation = $config['highlight_js_theme'];
-        $container->setParameter('wiki.highlight_js_theme',$this->themeLocation);
+        $container->setParameter('wiki_bundle.highlight_js_theme',$this->themeLocation);
         $definition = $container->getDefinition('markdown.engine');
         $definition->setClass($config['php_parser']);
 
         $this->addAnnotatedClassesToCompile([
-            'IndyDevGuy\\Bundle\\WikiBundle\\Services\\**',
-            'IndyDevGuy\\Bundle\\WikiBundle\\Repository\\**',
-            'IndyDevGuy\\Bundle\\WikiBundle\\Controller\\**',
+            'IndyDevGuy\\WikiBundle\\Services\\**',
+            'IndyDevGuy\\WikiBundle\\Repository\\**',
+            'IndyDevGuy\\WikiBundle\\Controller\\**',
         ]);
     }
 
@@ -38,7 +38,7 @@ class WikiExtension extends Extension implements PrependExtensionInterface
                 case 'twig':
                     $container->prependExtensionConfig(
                         $name,
-                        array('form_themes' => array('@Wiki/form/form.fields.twig'))
+                        array('form_themes' => array('@wiki_bundle/form/form.fields.html.twig'))
                     );
             }
         }
@@ -50,7 +50,7 @@ class WikiExtension extends Extension implements PrependExtensionInterface
                         'WikiBundle' => [
                             'type' => 'annotation',
                             'dir' => '%kernel.root_dir%/../vendor/indydevguy/wiki-bundle/Entity',
-                            'prefix' => 'IndyDevGuy\\Bundle\\WikiBundle\\Entity',
+                            'prefix' => 'IndyDevGuy\\WikiBundle\\Entity',
                         ],
                     ],
                 ],
@@ -59,7 +59,7 @@ class WikiExtension extends Extension implements PrependExtensionInterface
     }
     public function getAlias()
     {
-        return 'wiki';
+        return 'wiki_bundle';
 
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace IndyDevGuy\Bundle\WikiBundle\Entity;
+namespace IndyDevGuy\WikiBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository")
+ * @ORM\Entity(repositoryClass="IndyDevGuy\WikiBundle\Repository\WikiRepository")
  */
 class Wiki
 {
@@ -29,7 +29,7 @@ class Wiki
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="IndyDevGuy\Bundle\WikiBundle\Entity\WikiPage", mappedBy="wiki")
+     * @ORM\OneToMany(targetEntity="IndyDevGuy\WikiBundle\Entity\WikiPage", mappedBy="wiki")
      */
     private $wikiPages;
 

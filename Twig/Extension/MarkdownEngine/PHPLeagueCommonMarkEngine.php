@@ -1,5 +1,5 @@
 <?php
-namespace IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine;
+namespace IndyDevGuy\WikiBundle\Twig\Extension\MarkdownEngine;
 
 use Aptoma\Twig\Extension\MarkdownEngineInterface;
 use League\CommonMark\Block\Element\FencedCode;

@@ -4,43 +4,43 @@ services:
         autoconfigure: false
         public: true
 
-    IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository:
+    IndyDevGuy\WikiBundle\Repository\WikiEventRepository:
         arguments: ['@doctrine']
         tags: ['doctrine.repository_service']
 
-    IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository:
+    IndyDevGuy\WikiBundle\Repository\WikiPageRepository:
         arguments: ['@doctrine']
         tags: ['doctrine.repository_service']
 
-    IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository:
+    IndyDevGuy\WikiBundle\Repository\WikiRepository:
         arguments: ['@doctrine']
         tags: ['doctrine.repository_service']
 
-    IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType:
-        arguments: ['@IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository']
+    IndyDevGuy\WikiBundle\Form\WikiPageType:
+        arguments: ['@IndyDevGuy\WikiBundle\Repository\WikiPageRepository']
         public: false
         tags:
-            - { name: form.type, alias: IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType }
+            - { name: form.type, alias: IndyDevGuy\WikiBundle\Form\WikiPageType }
 
-    IndyDevGuy\Bundle\WikiBundle\Form\WikiType:
-        arguments: ['@IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository']
+    IndyDevGuy\WikiBundle\Form\WikiType:
+        arguments: ['@IndyDevGuy\WikiBundle\Repository\WikiRepository']
         public: false
         tags:
-            - { name: form.type, alias: IndyDevGuy\Bundle\WikiBundle\Form\WikiType }
+            - { name: form.type, alias: IndyDevGuy\WikiBundle\Form\WikiType }
 
-    IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService:
+    IndyDevGuy\WikiBundle\Services\WikiEventService:
         arguments:
             - '@security.token_storage'
             - '@doctrine.orm.default_entity_manager'
-            - '@IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository'
+            - '@IndyDevGuy\WikiBundle\Repository\WikiEventRepository'
 
-    IndyDevGuy\Bundle\WikiBundle\EventListener\ControllerListener:
+    IndyDevGuy\WikiBundle\EventListener\ControllerListener:
         arguments: [ '@twig', '@service_container' ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller }
 
     markdown.engine:
-        class: IndyDevGuy\Bundle\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine
+        class: IndyDevGuy\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine
     twig.markdown:
         class: Aptoma\Twig\Extension\MarkdownExtension
         arguments: ['@markdown.engine']

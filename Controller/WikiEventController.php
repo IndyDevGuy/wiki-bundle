@@ -1,6 +1,6 @@
 <?php
 
-namespace IndyDevGuy\Bundle\WikiBundle\Controller;
+namespace IndyDevGuy\WikiBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +19,7 @@ class WikiEventController extends WikiBaseController
     public function indexAction($wikiName)
     {
         $this->pageTitle = $wikiName . ' Events';
-        if (!$wiki = $this->get('IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository')->findOneByName($wikiName)) {
+        if (!$wiki = $this->get('IndyDevGuy\WikiBundle\Repository\WikiRepository')->findOneByName($wikiName)) {
             return $this->redirectToRoute('wiki_index');
         }
         if (!$wikiRoles = $this->getWikiPermission($wiki)) {
@@ -29,9 +29,9 @@ class WikiEventController extends WikiBaseController
             throw new AccessDeniedException('Access denied!');
         }
 
-        $wikiEvents = $this->get('IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository')->findByWikiId($wiki->getId());
+        $wikiEvents = $this->get('IndyDevGuy\WikiBundle\Repository\WikiEventRepository')->findByWikiId($wiki->getId());
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@Wiki/wiki_event/index.html.twig', [
+        return $this->render('@wiki_bundle/wiki_event/index.html.twig', [
             'wikiEvents' => $wikiEvents,
             'wiki' => $wiki,
             'pageTitle' => $this->pageTitle

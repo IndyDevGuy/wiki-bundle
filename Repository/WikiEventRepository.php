@@ -1,8 +1,7 @@
 <?php
+namespace IndyDevGuy\WikiBundle\Repository;
 
-namespace IndyDevGuy\Bundle\WikiBundle\Repository;
-
-use IndyDevGuy\Bundle\WikiBundle\Entity\WikiEvent;
+use IndyDevGuy\WikiBundle\Entity\WikiEvent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 

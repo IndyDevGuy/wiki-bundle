@@ -1,9 +1,8 @@
 <?php
+namespace IndyDevGuy\WikiBundle\Services;
 
-namespace IndyDevGuy\Bundle\WikiBundle\Services;
-
-use IndyDevGuy\Bundle\WikiBundle\Entity\WikiEvent;
-use IndyDevGuy\Bundle\WikiBundle\Repository\WikiEventRepository;
+use IndyDevGuy\WikiBundle\Entity\WikiEvent;
+use IndyDevGuy\WikiBundle\Repository\WikiEventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 

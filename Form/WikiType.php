@@ -1,9 +1,8 @@
 <?php
+namespace IndyDevGuy\WikiBundle\Form;
 
-namespace IndyDevGuy\Bundle\WikiBundle\Form;
-
-use IndyDevGuy\Bundle\WikiBundle\Entity\Wiki;
-use IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository;
+use IndyDevGuy\WikiBundle\Entity\Wiki;
+use IndyDevGuy\WikiBundle\Repository\WikiRepository;
 use App\Validator\Constraint\CodeConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -55,12 +54,18 @@ class WikiType extends AbstractType
             ->add('read_role', TextType::class, [
                 'required' => false,
                 'trim' => true,
-                'help' => 'ex. ROLE_EXAMPLE, ROLE_SUPERSUER',
+                'attr' => array(
+                    'class'=>'form-control',
+                    'placeholder'=>'ex. ROLE_EXAMPLE, ROLE_SUPERUSER'
+                )
             ])
             ->add('write_role', TextType::class, [
                 'required' => false,
                 'trim' => true,
-                'help' => 'ex. ROLE_EXAMPLE, ROLE_SUPERSUER',
+                'attr' => array(
+                    'class'=>'form-control',
+                    'placeholder'=>'ex. ROLE_EXAMPLE, ROLE_SUPERUSER'
+                )
             ])
         ;
     }

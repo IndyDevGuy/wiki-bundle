@@ -1,11 +1,11 @@
 <?php
 
-namespace IndyDevGuy\Bundle\WikiBundle\Controller;
+namespace IndyDevGuy\WikiBundle\Controller;
 
-use IndyDevGuy\Bundle\WikiBundle\Entity\Wiki;
-use IndyDevGuy\Bundle\WikiBundle\Entity\WikiPage;
-use IndyDevGuy\Bundle\WikiBundle\Form\WikiPageType;
-use IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService;
+use IndyDevGuy\WikiBundle\Entity\Wiki;
+use IndyDevGuy\WikiBundle\Entity\WikiPage;
+use IndyDevGuy\WikiBundle\Form\WikiPageType;
+use IndyDevGuy\WikiBundle\Services\WikiEventService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,14 +30,14 @@ class WikiPageController extends WikiBaseController
             throw new AccessDeniedException('Access denied!');
         }
         $this->pageTitle = $wiki->getName() . ' Page List';
-        $wikiPageRepository = $this->get('IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository');
+        $wikiPageRepository = $this->get('IndyDevGuy\WikiBundle\Repository\WikiPageRepository');
 
         $data = $wikiRoles;
         $data['wikiPages'] = $wikiPageRepository->findByWikiId($wiki->getId());
         $data['wiki'] = $wiki;
         $data['pageTitle'] = $this->pageTitle;
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@Wiki/wiki_page/index.html.twig', $data);
+        return $this->render('@wiki_bundle/wiki_page/index.html.twig', $data);
     }
 
     /**
@@ -50,7 +50,7 @@ class WikiPageController extends WikiBaseController
         $wikiPage->setWiki($wiki);
         $this->pageTitle = 'Add Wiki Page to ' . $wiki->getName();
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->getEditForm($request, $wikiPage, $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService'));
+        return $this->getEditForm($request, $wikiPage, $this->get('IndyDevGuy\WikiBundle\Services\WikiEventService'));
     }
 
     /**
@@ -74,7 +74,7 @@ class WikiPageController extends WikiBaseController
         $data['wiki'] = $wiki;
         $data['pageTitle'] = $this->pageTitle;
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@Wiki/wiki_page/view.html.twig', $data);
+        return $this->render('@wiki_bundle/wiki_page/view.html.twig', $data);
     }
 
     /**
@@ -84,7 +84,7 @@ class WikiPageController extends WikiBaseController
     public function editAction(Request $request, Wiki $wiki, WikiPage $wikiPage): Response
     {
         $this->pageTitle = 'Edit Page ' . $wikiPage->getName();
-        return $this->getEditForm($request, $wikiPage, $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService'));
+        return $this->getEditForm($request, $wikiPage, $this->get('IndyDevGuy\WikiBundle\Services\WikiEventService'));
     }
 
     /**
@@ -100,7 +100,7 @@ class WikiPageController extends WikiBaseController
             throw new AccessDeniedException('Access denied!');
         }
 
-        $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService')->createEvent(
+        $this->get('IndyDevGuy\WikiBundle\Services\WikiEventService')->createEvent(
             'page.deleted',
             $wikiPage->getWiki()->getId(),
             json_encode([
@@ -168,7 +168,7 @@ class WikiPageController extends WikiBaseController
             ]);
         }
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@Wiki/wiki_page/edit.html.twig', [
+        return $this->render('@wiki_bundle/wiki_page/edit.html.twig', [
             'wikiPage' => $wikiPage,
             'form' => $form->createView(),
             'pageTitle' => $this->pageTitle

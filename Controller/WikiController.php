@@ -1,10 +1,10 @@
 <?php
 
-namespace IndyDevGuy\Bundle\WikiBundle\Controller;
+namespace IndyDevGuy\WikiBundle\Controller;
 
-use IndyDevGuy\Bundle\WikiBundle\Entity\Wiki;
-use IndyDevGuy\Bundle\WikiBundle\Form\WikiType;
-use IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService;
+use IndyDevGuy\WikiBundle\Entity\Wiki;
+use IndyDevGuy\WikiBundle\Form\WikiType;
+use IndyDevGuy\WikiBundle\Services\WikiEventService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +23,7 @@ class WikiController extends WikiBaseController
      */
     public function indexAction(): Response
     {
-        $wikis = $this->get('IndyDevGuy\Bundle\WikiBundle\Repository\WikiRepository')->findAll();
+        $wikis = $this->get('IndyDevGuy\WikiBundle\Repository\WikiRepository')->findAll();
         $this->pageTitle = 'Wiki List';
         $wikiArray = [];
         foreach ($wikis as $wiki) {
@@ -52,7 +52,7 @@ class WikiController extends WikiBaseController
     {
         $wiki = new Wiki();
 
-        return $this->getEditForm($request, $wiki, $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService'));
+        return $this->getEditForm($request, $wiki, $this->get('IndyDevGuy\WikiBundle\Services\WikiEventService'));
     }
 
     /**
@@ -62,7 +62,7 @@ class WikiController extends WikiBaseController
      */
     public function editAction(Request $request, Wiki $wiki): Response
     {
-        return $this->getEditForm($request, $wiki, $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService'));
+        return $this->getEditForm($request, $wiki, $this->get('IndyDevGuy\WikiBundle\Services\WikiEventService'));
     }
 
     /**
@@ -75,7 +75,7 @@ class WikiController extends WikiBaseController
         if (count($wiki->getWikiPages())) {
             $this->addFlash('error', 'The wiki cannot be deleted because of having a wiki-page.');
         } else {
-            $this->get('IndyDevGuy\Bundle\WikiBundle\Services\WikiEventService')
+            $this->get('IndyDevGuy\WikiBundle\Services\WikiEventService')
                 ->createEvent(
                     'wiki.deleted',
                     $wiki->getId(),
@@ -141,7 +141,7 @@ class WikiController extends WikiBaseController
         }
         $twig = $this->get('twig');
         $twig->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@Wiki/wiki/edit.html.twig', [
+        return $this->render('@wiki_bundle/wiki/edit.html.twig', [
             'wiki' => $wiki,
             'form' => $form->createView(),
             'pageTitle' => $this->pageTitle

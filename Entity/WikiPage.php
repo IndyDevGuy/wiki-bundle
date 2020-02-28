@@ -1,11 +1,11 @@
 <?php
 
-namespace IndyDevGuy\Bundle\WikiBundle\Entity;
+namespace IndyDevGuy\WikiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="IndyDevGuy\Bundle\WikiBundle\Repository\WikiPageRepository")
+ * @ORM\Entity(repositoryClass="IndyDevGuy\WikiBundle\Repository\WikiPageRepository")
  */
 class WikiPage
 {
@@ -17,7 +17,7 @@ class WikiPage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="IndyDevGuy\Bundle\WikiBundle\Entity\Wiki", inversedBy="wikiPages")
+     * @ORM\ManyToOne(targetEntity="IndyDevGuy\WikiBundle\Entity\Wiki", inversedBy="wikiPages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $wiki;
@@ -33,9 +33,9 @@ class WikiPage
     private $content;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
      */
-    private $data;
+    private $highlighttheme;
 
     public function getId(): ?int
     {
@@ -78,15 +78,13 @@ class WikiPage
         return $this;
     }
 
-    public function getData(): ?string
+    public function getHighlighttheme()
     {
-        return $this->data;
+        return $this->highlighttheme;
     }
 
-    public function setData(?string $data): self
+    public function setHighlighttheme(string $theme)
     {
-        $this->data = $data;
-
-        return $this;
+        $this->highlighttheme = $theme;
     }
 }
