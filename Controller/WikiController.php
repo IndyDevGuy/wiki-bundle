@@ -1,5 +1,4 @@
 <?php
-
 namespace IndyDevGuy\WikiBundle\Controller;
 
 use IndyDevGuy\WikiBundle\Entity\Wiki;
@@ -141,7 +140,7 @@ class WikiController extends WikiBaseController
         }
         $twig = $this->get('twig');
         $twig->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@wiki_bundle/wiki/edit.html.twig', [
+        return $this->render('@Wiki/wiki/edit.html.twig', [
             'wiki' => $wiki,
             'form' => $form->createView(),
             'pageTitle' => $this->pageTitle

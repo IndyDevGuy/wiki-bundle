@@ -18,9 +18,9 @@ class WikiExtension extends Extension implements PrependExtensionInterface
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-        $container->setParameter('wiki_bundle.php_parser',$config['php_parser']);
+        $container->setParameter('wiki.php_parser',$config['php_parser']);
         $this->themeLocation = $config['highlight_js_theme'];
-        $container->setParameter('wiki_bundle.highlight_js_theme',$this->themeLocation);
+        $container->setParameter('wiki.highlight_js_theme',$this->themeLocation);
         $definition = $container->getDefinition('markdown.engine');
         $definition->setClass($config['php_parser']);
 
@@ -38,7 +38,7 @@ class WikiExtension extends Extension implements PrependExtensionInterface
                 case 'twig':
                     $container->prependExtensionConfig(
                         $name,
-                        array('form_themes' => array('@wiki_bundle/form/form.fields.html.twig'))
+                        array('form_themes' => array('@Wiki/form/form.fields.html.twig'))
                     );
             }
         }
@@ -59,7 +59,6 @@ class WikiExtension extends Extension implements PrependExtensionInterface
     }
     public function getAlias()
     {
-        return 'wiki_bundle';
-
+        return 'wiki';
     }
 }

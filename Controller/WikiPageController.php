@@ -37,7 +37,7 @@ class WikiPageController extends WikiBaseController
         $data['wiki'] = $wiki;
         $data['pageTitle'] = $this->pageTitle;
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@wiki_bundle/wiki_page/index.html.twig', $data);
+        return $this->render('@Wiki/wiki_page/index.html.twig', $data);
     }
 
     /**
@@ -67,7 +67,7 @@ class WikiPageController extends WikiBaseController
             throw new AccessDeniedException('Access denied!');
         }
 
-        $this->container->setParameter('wiki_bundle.highlight_js_theme', $wikiPage->getHighlighttheme());
+        $this->container->setParameter('wiki.highlight_js_theme', $wikiPage->getHighlighttheme());
 
         $this->pageTitle = $wikiPage->getName();
 
@@ -76,7 +76,7 @@ class WikiPageController extends WikiBaseController
         $data['wiki'] = $wiki;
         $data['pageTitle'] = $this->pageTitle;
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@wiki_bundle/wiki_page/view.html.twig', $data);
+        return $this->render('@Wiki/wiki_page/view.html.twig', $data);
     }
 
     /**
@@ -170,7 +170,7 @@ class WikiPageController extends WikiBaseController
             ]);
         }
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@wiki_bundle/wiki_page/edit.html.twig', [
+        return $this->render('@Wiki/wiki_page/edit.html.twig', [
             'wikiPage' => $wikiPage,
             'form' => $form->createView(),
             'pageTitle' => $this->pageTitle

@@ -29,6 +29,9 @@ class WikiType extends AbstractType
             ->add('name', TextType::class, [
                 'required' => true,
                 'trim' => true,
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
                 'constraints' => [
                     new Assert\NotBlank(),
                     // TODO: resolve this
@@ -47,6 +50,9 @@ class WikiType extends AbstractType
             ->add('description', TextType::class, [
                 'required' => true,
                 'trim' => true,
+                'attr'=>[
+                    'class'=>'form-control'
+                ],
                 'constraints' => [
                     new Assert\NotBlank(),
                 ],
@@ -54,18 +60,18 @@ class WikiType extends AbstractType
             ->add('read_role', TextType::class, [
                 'required' => false,
                 'trim' => true,
-                'attr' => array(
+                'attr' => [
                     'class'=>'form-control',
                     'placeholder'=>'ex. ROLE_EXAMPLE, ROLE_SUPERUSER'
-                )
+                ],
             ])
             ->add('write_role', TextType::class, [
                 'required' => false,
                 'trim' => true,
-                'attr' => array(
+                'attr' => [
                     'class'=>'form-control',
                     'placeholder'=>'ex. ROLE_EXAMPLE, ROLE_SUPERUSER'
-                )
+                ],
             ])
         ;
     }

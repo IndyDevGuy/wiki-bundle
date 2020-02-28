@@ -31,7 +31,7 @@ class WikiEventController extends WikiBaseController
 
         $wikiEvents = $this->get('IndyDevGuy\WikiBundle\Repository\WikiEventRepository')->findByWikiId($wiki->getId());
         $this->get('twig')->addGlobal('pageTitle', $this->pageTitle);
-        return $this->render('@wiki_bundle/wiki_event/index.html.twig', [
+        return $this->render('@Wiki/wiki_event/index.html.twig', [
             'wikiEvents' => $wikiEvents,
             'wiki' => $wiki,
             'pageTitle' => $this->pageTitle

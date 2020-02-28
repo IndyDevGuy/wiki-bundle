@@ -20,9 +20,6 @@ class ControllerListener
      */
     public function onKernelController(ControllerEvent $event)
     {
-        $controller = $event->getController();
-        if ($controller instanceof WikiBaseController) {
-            $this->twig->addGlobal('highlightJsTheme', $this->container->getParameter('wiki_bundle.highlight_js_theme'));
-        }
+        $this->twig->addGlobal('highlightJsTheme', $this->container->getParameter('wiki.highlight_js_theme'));
     }
 }
