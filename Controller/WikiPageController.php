@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  * @Security("has_role('ROLE_ADMIN')") *
  * @Route("/wiki/{wikiName}")
- * @ParamConverter("wiki", options={"mapping"={"wikiName"="name"}})
+ * @ParamConverter("wikiName", class="WikiBundle:Wiki", converter="wiki_converter")
  */
 class WikiPageController extends WikiBaseController
 {
@@ -54,8 +54,8 @@ class WikiPageController extends WikiBaseController
     }
 
     /**
-     * @Route("/{pageName}", name="wiki_page_view", methods="GET")
-     * @ParamConverter("wikiPage", options={"mapping"={"pageName"="name"}})
+     * @Route("/{wikiPage}", name="wiki_page_view", methods="GET")
+     * @ParamConverter("wikiPage", class="WikiBundle:WikiPage", converter="wiki_page_converter")
      * @Security("has_role('ROLE_SUPERUSER') || has_role('ROLE_ADMIN') || has_role('ROLE_WIKI') ")
      */
     public function viewAction(Wiki $wiki, WikiPage $wikiPage): Response
@@ -67,7 +67,6 @@ class WikiPageController extends WikiBaseController
             throw new AccessDeniedException('Access denied!');
         }
 
-        $this->container->setParameter('wiki.highlight_js_theme', $wikiPage->getHighlighttheme());
 
         $this->pageTitle = $wikiPage->getName();
 

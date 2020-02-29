@@ -18,6 +18,23 @@ class WikiRepository extends ServiceEntityRepository
         parent::__construct($registry, Wiki::class);
     }
 
+    public function findWikiByNameWithDashes(string $wikiName)
+    {
+        $newName = str_replace('-',' ', $wikiName);
+        $qb = $this->createQueryBuilder('w')
+            ->andWhere('w.name = :val')
+            ->setParameter('val', $newName);
+        $query = $qb->getQuery();
+
+        $entities = $query->execute();
+        foreach($entities as $entity)
+        {
+            if($entity->getName() == $newName)
+                return $entity;
+        }
+        return null;
+    }
+
     public function findOneByName($name)
     {
         return $this->findOneBy(['name' => $name]);

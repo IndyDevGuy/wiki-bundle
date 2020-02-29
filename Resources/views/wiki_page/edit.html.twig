@@ -30,6 +30,9 @@
                     codeSyntaxHighlighting: true
                 }
             });
+            easyMDE.codemirror.on("change", function(){
+                $("#EasyMDE").val(easyMDE.value());
+            });
         })
     </script>
 {% endblock %}

@@ -42,36 +42,36 @@ class WikiPage
         return $this->id;
     }
 
-    public function getWiki(): ?Wiki
+    public function getWiki()
     {
         return $this->wiki;
     }
 
-    public function setWiki(?Wiki $wiki): self
+    public function setWiki(Wiki $wiki)
     {
         $this->wiki = $wiki;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name)
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContent()
     {
         return $this->content;
     }
 
-    public function setContent(?string $content): self
+    public function setContent(string $content)
     {
         $this->content = $content;
 

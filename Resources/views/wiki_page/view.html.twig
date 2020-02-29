@@ -1,39 +1,45 @@
 {% extends '@Wiki/base.html.twig' %}
 
 {% block body %}
-    <h3>
-        Wiki:
-        <a href="#">
-            {{ wikiPage.wiki.name }}
-        </a>
-        /
-        {{ wikiPage.name }}
-    </h3>
+    <div class="row no-gutters">
 
-    <div class="buttonbox" >
-        {% if is_granted('ROLE_SUPERUSER') or readRole %}
-            <a href="{{ path('wiki_page_index',{'wikiName':  wikiPage.wiki.name }) }}"  class="btn btn-primary" >
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                Back
-            </a>
-        {% endif %}
-        {% if is_granted('ROLE_SUPERUSER') or writeRole %}
-            <a href="{{ path('wiki_page_edit', {'wikiName':  wikiPage.wiki.name,'id': wikiPage.id }) }}" class="btn btn-success">
-                <i class="fa fa-edit" aria-hidden="true"></i>
-                Edit
-            </a>
-            <a href="{{ path('wiki_page_delete', {'wikiName':  wikiPage.wiki.name, 'id': wikiPage.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">
-                <i class="fa fa-edit" aria-hidden="true"></i>
-                Delete
-            </a>
-        {% endif %}
+        <div class="col-md-10">
+            <h3>Viewing Wiki: <a href="{{ path('wiki_page_index', {'wikiName': wiki.name}) }}">{{ wikiPage.wiki.name }}</a>/{{ wikiPage.name }}</h3>
+            <hr />
+            {% markdown %}
+                {{ wikiPage.content|raw }}
+            {% endmarkdown %}
+        </div>
+
+        <div class="col-md-2 buttonbox float-right" >
+            <div class="btn-group">
+                {% if is_granted('ROLE_SUPERUSER') or readRole %}
+                    <a href="{{ path('wiki_page_index',{'wikiName':  wikiPage.wiki.name }) }}"  class="btn btn-sm btn-primary" >
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </a>
+                {% endif %}
+                {% if is_granted('ROLE_SUPERUSER') or writeRole %}
+                    <a href="{{ path('wiki_page_edit', {'wikiName':  wikiPage.wiki.name,'id': wikiPage.id }) }}" class="btn btn-sm btn-secondary">
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('wiki_page_delete', {'wikiName':  wikiPage.wiki.name, 'id': wikiPage.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">
+                        <i class="fa fa-trash-alt" aria-hidden="true"></i>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                {% for tempWikiPage in wiki.wikiPages %}
+                    <li class="nav-item">
+                        <a class="nav-link{% if tempWikiPage.name == wikiPage.name %} active{% endif %}" href="/wiki/{{ wiki.name|replace({" ":"-"}) }}/{{ tempWikiPage.name | replace({" ":"-"}) }}">{{ tempWikiPage.name }}</a>
+                    </li>
+                {% endfor %}
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="col-md-12">
-        {% markdown %}
-            {{ wikiPage.content|raw }}
-        {% endmarkdown %}
-    </div>
 
 {% endblock %}
 

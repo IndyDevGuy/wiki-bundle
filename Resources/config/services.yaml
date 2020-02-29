@@ -35,9 +35,21 @@ services:
             - '@IndyDevGuy\WikiBundle\Repository\WikiEventRepository'
 
     IndyDevGuy\WikiBundle\EventListener\ControllerListener:
-        arguments: [ '@twig', '@service_container' ]
+        arguments: [ '@twig', '@doctrine.orm.default_entity_manager',  '@service_container' ]
         tags:
             - { name: kernel.event_listener, event: kernel.controller }
+
+    wiki.param_converter.wiki_page_converter:
+        class: IndyDevGuy\WikiBundle\Request\ParamConverter\WikiPageParamConverter
+        arguments: ['@doctrine.orm.default_entity_manager']
+        tags:
+            - { name: request.param_converter, converter: wiki_page_converter }
+
+    wiki.param_converter.wiki_converter:
+        class: IndyDevGuy\WikiBundle\Request\ParamConverter\WikiParamConverter
+        arguments: ['@doctrine.orm.default_entity_manager']
+        tags:
+            - { name: request.param_converter, converter: wiki_converter }
 
     markdown.engine:
         class: IndyDevGuy\WikiBundle\Twig\Extension\MarkdownEngine\PHPLeagueCommonMarkEngine

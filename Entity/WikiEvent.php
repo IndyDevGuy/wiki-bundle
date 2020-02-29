@@ -46,77 +46,77 @@ class WikiEvent
      */
     private $wiki_id;
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getType(): ?string
+    public function getType()
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(string $type)
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?int
+    public function getCreatedAt()
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(int $created_at): self
+    public function setCreatedAt(int $created_at)
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getCreatedBy(): ?string
+    public function getCreatedBy()
     {
         return $this->created_by;
     }
 
-    public function setCreatedBy(string $created_by): self
+    public function setCreatedBy(string $created_by)
     {
         $this->created_by = $created_by;
 
         return $this;
     }
 
-    public function getWikiPageId(): ?int
+    public function getWikiPageId()
     {
         return $this->wiki_page_id;
     }
 
-    public function setWikiPageId(?int $wiki_page_id): self
+    public function setWikiPageId(int $wiki_page_id)
     {
         $this->wiki_page_id = $wiki_page_id;
 
         return $this;
     }
 
-    public function getData(): ?string
+    public function getData()
     {
         return $this->data;
     }
 
-    public function setData(?string $data): self
+    public function setData(string $data)
     {
         $this->data = $data;
 
         return $this;
     }
 
-    public function getWikiId(): ?int
+    public function getWikiId()
     {
         return $this->wiki_id;
     }
 
-    public function setWikiId(?int $wiki_id): self
+    public function setWikiId(int $wiki_id)
     {
         $this->wiki_id = $wiki_id;
 

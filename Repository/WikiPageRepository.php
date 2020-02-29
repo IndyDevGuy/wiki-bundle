@@ -18,6 +18,26 @@ class WikiPageRepository extends ServiceEntityRepository
         parent::__construct($registry, WikiPage::class);
     }
 
+    public function findWikiPageByNameWithDashes(string $name)
+    {
+        $newName = str_replace('-',' ', $name);
+        //var_dump($newName);
+        //exit();
+        $qb = $this->createQueryBuilder('w')
+            ->andWhere('w.name = :val')
+            ->setParameter('val', $newName);
+        $query = $qb->getQuery();
+
+        $entities = $query->execute();
+        foreach($entities as $entity)
+        {
+            if($entity->getName() == $newName)
+                return $entity;
+        }
+        return null;
+        //return $this->findOneBy(['name' => $newName]);
+    }
+
 //    /**
 //     * @return WikiPage[] Returns an array of WikiPage objects
 //     */

@@ -2,7 +2,7 @@
 namespace IndyDevGuy\WikiBundle\Controller;
 
 use IndyDevGuy\WikiBundle\Entity\Wiki;
-use Symfony\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class WikiBaseController extends AbstractController
 {

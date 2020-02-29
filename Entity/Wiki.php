@@ -48,29 +48,29 @@ class Wiki
         $this->wikiPages = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name)
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription()
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(string $description)
     {
         $this->description = $description;
 
@@ -80,12 +80,12 @@ class Wiki
     /**
      * @return Collection|WikiPage[]
      */
-    public function getWikiPages(): Collection
+    public function getWikiPages()
     {
         return $this->wikiPages;
     }
 
-    public function addWikiPage(WikiPage $wikiPage): self
+    public function addWikiPage(WikiPage $wikiPage)
     {
         if (!$this->wikiPages->contains($wikiPage)) {
             $this->wikiPages[] = $wikiPage;
@@ -95,7 +95,7 @@ class Wiki
         return $this;
     }
 
-    public function removeWikiPage(WikiPage $wikiPage): self
+    public function removeWikiPage(WikiPage $wikiPage)
     {
         if ($this->wikiPages->contains($wikiPage)) {
             $this->wikiPages->removeElement($wikiPage);
@@ -108,26 +108,26 @@ class Wiki
         return $this;
     }
 
-    public function setReadRole(?string $read_role): self
+    public function setReadRole(?string $read_role)
     {
         $this->read_role = $read_role;
 
         return $this;
     }
 
-    public function getReadRole(): ?string
+    public function getReadRole()
     {
         return $this->read_role;
     }
 
-    public function setWriteRole(?string $write_role): self
+    public function setWriteRole(?string $write_role)
     {
         $this->write_role = $write_role;
 
         return $this;
     }
 
-    public function getWriteRole(): ?string
+    public function getWriteRole()
     {
         return $this->write_role;
     }
