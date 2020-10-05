@@ -22,9 +22,9 @@
   },
   "require": {
     "doctrine/doctrine-bundle":  "^2.0",
-    "symfony/framework-bundle": "^4.0",
+    "symfony/framework-bundle": "^5.0",
     "sensio/framework-extra-bundle": "^5.1",
-    "symfony/security-bundle": "^4.0",
+    "symfony/security-bundle": "^5.0",
     "ext-json": "*",
     "aptoma/twig-markdown": "~3.0",
     "league/commonmark": "^1.3",
