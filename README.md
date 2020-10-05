@@ -1,4 +1,4 @@
-## Symfony 4 WikiBundle
+## Symfony 5 WikiBundle
 
 Installation
 ============
@@ -34,7 +34,7 @@ return [
 
 Create routing file to enable routes from wiki bundle like this:
 `config/routes/indydevguy-wiki-bundle.yaml`
-And add loading of routes at next way:
+And add loading of routes like the following:
 ```yaml
 wiki:
     resource: '@WikiBundle/Resources/config/routing.yaml'
