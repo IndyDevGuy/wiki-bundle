@@ -21,8 +21,6 @@ class WikiPageRepository extends ServiceEntityRepository
     public function findWikiPageByNameWithDashes(string $name)
     {
         $newName = str_replace('-',' ', $name);
-        //var_dump($newName);
-        //exit();
         $qb = $this->createQueryBuilder('w')
             ->andWhere('w.name = :val')
             ->setParameter('val', $newName);

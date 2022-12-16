@@ -2,7 +2,9 @@
 namespace IndyDevGuy\WikiBundle\Request\ParamConverter;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use IndyDevGuy\WikiBundle\Entity\WikiPage;
+use InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class WikiPageParamConverter implements ParamConverterInterface
 {
 
-    private $em;
+    private EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $em)
     {
@@ -27,7 +29,7 @@ class WikiPageParamConverter implements ParamConverterInterface
 
         // Check, if route attributes exists
         if (null === $wikiPageSlug) {
-            throw new \InvalidArgumentException('Route error: "wikiPage" attribute is missing');
+            throw new InvalidArgumentException('Route error: "wikiPage" attribute is missing');
         }
 
         $wikiPageRepo = $this->em->getRepository($configuration->getClass());
@@ -35,7 +37,7 @@ class WikiPageParamConverter implements ParamConverterInterface
         // Try to find village by its slug and slug of its district
         $wikiPage = $wikiPageRepo->findWikiPageByNameWithDashes($wikiPageSlug);
 
-        if (null === $wikiPage || !($wikiPage instanceof WikiPage)) {
+        if (!($wikiPage instanceof WikiPage)) {
             throw new NotFoundHttpException(sprintf('%s object not found.', $configuration->getClass()));
         }
 
@@ -46,14 +48,8 @@ class WikiPageParamConverter implements ParamConverterInterface
     /**
      * @inheritDoc
      */
-    public function supports(ParamConverter $configuration)
+    public function supports(ParamConverter $configuration): bool
     {
-        // If there is no manager, this means that only Doctrine DBAL is configured
-        // In this case we can do nothing and just return
-        if (null === $this->em) {
-            return false;
-        }
-
         // Check, if option class was set in configuration
         if (null === $configuration->getClass()) {
             return false;

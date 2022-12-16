@@ -35,7 +35,7 @@ class WikiRepository extends ServiceEntityRepository
         return null;
     }
 
-    public function findOneByName($name)
+    public function findOneByName($name): ?Wiki
     {
         return $this->findOneBy(['name' => $name]);
     }
