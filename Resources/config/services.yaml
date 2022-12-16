@@ -4,6 +4,27 @@ services:
         autoconfigure: false
         public: true
 
+    IndyDevGuy\WikiBundle\Controller\WikiController:
+        tags:
+            - { name: service_subscriber }
+            - { name: controller.service_arguments }
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
+
+    IndyDevGuy\WikiBundle\Controller\WikiPageController:
+        tags:
+            - { name: service_subscriber }
+            - { name: controller.service_arguments }
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
+
+    IndyDevGuy\WikiBundle\Controller\WikiEventController:
+        tags:
+            - { name: service_subscriber }
+            - { name: controller.service_arguments }
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
+
     IndyDevGuy\WikiBundle\Repository\WikiEventRepository:
         arguments: ['@doctrine']
         tags: ['doctrine.repository_service']
