@@ -49,7 +49,7 @@ class WikiExtension extends Extension implements PrependExtensionInterface
                     'mappings' => [
                         'WikiBundle' => [
                             'type' => 'annotation',
-                            'dir' => '%kernel.root_dir%/../vendor/indydevguy/wiki-bundle/Entity',
+                            'dir' => '%kernel.project_dir%/../vendor/indydevguy/wiki-bundle/Entity',
                             'prefix' => 'IndyDevGuy\\WikiBundle\\Entity',
                         ],
                     ],
